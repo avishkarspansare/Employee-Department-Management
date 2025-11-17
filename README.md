@@ -95,9 +95,7 @@ or
 yarn start
 
 
-4. The UI will be available at:
-
-http://localhost:3000/
+4. The UI will be available at:  http://localhost:3000/
 
 
 Make sure the frontend service files (e.g. `EmployeeService.js`) are pointing to the correct backend base URL (like `http://localhost:8080/api/v1/...`).  
