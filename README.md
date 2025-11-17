@@ -1,134 +1,156 @@
-# Spring Boot & React CRUD Application
+# Employee–Department Management 🚀 [web:44][file:1]
 
-This project is a full‑stack CRUD application built with a Spring Boot REST API on the backend and a React single‑page application on the frontend.  
-
----
-
-## Overview
-
-The backend exposes REST endpoints for managing entities (for example, Employees and Departments) using Spring Boot, Spring Web, and Spring Data JPA.  
-The frontend is a React app that calls these endpoints via Axios to provide a responsive UI for creating, reading, updating, and deleting records.  
-The project is intended as a practical template or starter for small internal tools and training assignments before moving to production‑level client projects.  
+A small but mighty full‑stack app that lets you manage employees, departments, and who belongs where – powered by Spring Boot on the backend and React on the frontend. [web:43][file:11]  
 
 ---
 
-## Tech Stack
+## Why this project exists 💡 [web:54][file:7]
 
-- **Backend:** Java, Spring Boot, Spring Web, Spring Data JPA  
-- **Database:** MySQL (or any JPA‑compatible relational database)  
-- **Frontend:** React, React Router, Axios, Bootstrap  
-- **Build Tools:** Maven (backend), npm/yarn (frontend)  
+This app was built as a practice project to get hands‑on with a real Spring Boot + React stack before jumping onto client work. [web:44][file:7]  
+It gives you end‑to‑end CRUD flow, JPA relationships, React routing, and a clean service layer so you can reuse the patterns in bigger projects. [web:45][file:12]  
 
 ---
 
-## Features
+## Tech Stack ⚙️ [web:49][file:7]
 
-- Full CRUD operations for core entities (create, list, view, update, delete)  
-- RESTful API built with Spring Boot and exposed under a versioned path (e.g. `/api/v1`)  
-- React UI with routing between list, detail, and form pages  
-- Axios‑based service layer for clean separation of API calls in the frontend  
-- Basic error handling for “resource not found” scenarios on the backend  
+- **Backend:** Java, Spring Boot, Spring Web, Spring Data JPA. [web:45][file:7]  
+- **Frontend:** React, React Router, Axios, Bootstrap. [web:44][file:13]  
+- **Database:** MySQL (or any JPA‑compatible relational DB). [web:49][file:7]  
+- **Build Tools:** Maven for backend, npm/yarn for frontend. [web:43][file:13]  
 
 ---
 
-## Project Structure
+## What you can do 🎯 [web:69][file:1]
+
+- Add, list, update, view, and delete employees from a web UI. [web:69][file:11]  
+- Create departments with unique names and prevent duplicates at the API level. [web:47][file:6]  
+- Assign employees to departments or keep them “On Bench” with no department set. [file:3][file:5]  
+- Fetch how many employees sit in each department using a dedicated count endpoint. [web:49][file:6]  
+
+---
+
+## Project layout 🗂️ [web:44][file:7]
 
 backend/
-src/main/java/...
-controller/ # REST controllers
-model/ # JPA entities
-repository/ # Spring Data JPA repositories
-exception/ # Custom exceptions (e.g. ResourceNotFoundException)
-Application.java # Spring Boot entrypoint
+controller/ # REST controllers (EmployeeController, DepartmentController)
+model/ # JPA entities (Employee, Department)
+repository/ # Spring Data repositories
+exception/ # ResourceNotFoundException, etc.
+EmployeeManagementApplication.java
 
 frontend/
-src/
-components/ # React components (list, create/update, view)
-services/ # Axios API clients
+components/ # React class components (list, view, update)
+services/ # Axios wrappers (EmployeeService, DepartmentService)
 index.js # React entrypoint
-index.css # Global styles
+index.css # Global styling
+
+[web:44][file:1]  
+
+The backend owns the REST API, and the frontend talks to it via small, focused service files so your UI code stays clean. [web:43][file:12]  
 
 ---
 
-## Getting Started
+## Getting started in 2 terminals ⚡ [web:44][web:49]
 
-### Prerequisites
+### 1️⃣ Backend – Spring Boot API [web:45][file:7]
 
-- Java 17+  
-- Maven  
-- Node.js and npm (or yarn)  
-- A running MySQL instance (or another relational DB)  
+1. Go to the backend folder (where `pom.xml` lives). [web:45][file:7]  
 
----
-
-### Backend Setup (Spring Boot)
-
-1. Navigate to the backend folder (where `pom.xml` is located). 
-
-2. Configure the database in `application.properties` or `application.yml`:
+2. Set your DB config in `application.properties` or `application.yml`: [web:49][file:7]  
 
 spring.datasource.url=jdbc:mysql://localhost:3306/your_db_name
 spring.datasource.username=your_username
 spring.datasource.password=your_password
 spring.jpa.hibernate.ddl-auto=update
 
+3. Run the API: [web:45][file:7]  
 
-3. Run the backend:  mvn spring-boot:run
+mvn spring-boot:run
 
+4. You now have a REST backend at: [web:47][file:1]  
 
-4. The API will be available at:  http://localhost:8080/api/v1
+http://localhost:8080/api/v1
+
+Key classes: [web:45][file:1]  
+
+- `EmployeeController` – `/api/v1/employees` CRUD endpoints. [file:1][file:12]  
+- `DepartmentController` – `/api/v1/departments` + search + employee count. [file:6][file:9]  
+- `ResourceNotFoundException` – clean 404 when something is missing. [file:2][file:1]  
 
 ---
 
-### Frontend Setup (React)
+### 2️⃣ Frontend – React UI [web:44][file:13]
 
-1. Navigate to the frontend folder (where `package.json` is located).  
+1. Go to the frontend folder (where `package.json` lives). [web:44][file:13]  
+2. Install dependencies: [web:44][file:13]  
 
-2. Install dependencies:
 npm install
+
 or
 yarn install
 
-3. Start the React dev server:
+3. Start the dev server: [web:44][file:13]  
+
 npm start
+
 or
 yarn start
 
+4. Open the app at: [web:44][file:13]  
 
-4. The UI will be available at:  http://localhost:3000/
+http://localhost:3000
 
-
-Make sure the frontend service files (e.g. `EmployeeService.js`) are pointing to the correct backend base URL (like `http://localhost:8080/api/v1/...`).  
-
----
-
-## Core Concepts
-
-### Backend
-
-- Entities are defined as JPA classes annotated with `@Entity` and mapped to tables.  
-- Repositories extend `JpaRepository` to provide CRUD operations and custom finder methods.  
-- Controllers annotated with `@RestController` expose endpoints that return JSON.  
-- A custom exception (e.g. `ResourceNotFoundException`) is used to return HTTP 404 when records are missing.  
-
-### Frontend
-
-- React components display lists, forms, and detail views of the data.  
-- React Router is used for navigation between pages like `/entities`, `/add-entity`, `/update-entity/:id`, `/view-entity/:id`.  
-- Axios service classes encapsulate all HTTP calls and are imported by components to keep UI code clean.  
+The React app is already wired to call `http://localhost:8080/api/v1/...` through `EmployeeService.js` and `DepartmentService.js`. [web:44][file:9]  
 
 ---
 
-## How to Extend
+## Domain model 🧩 [web:45][file:3]
 
-- Add validation on both backend (Bean Validation annotations) and frontend (form validation) for better data quality.  
-- Implement pagination, search, and sorting on list pages.  
-- Integrate authentication and authorization if you need protected routes and secured endpoints.  
-- Containerize the app using Docker for easier deployment.  
+- **Employee** – `id`, `firstName`, `lastName`, `emailId`, optional `department`. [file:5][file:1]  
+- **Department** – `id`, unique `name`, list of `employees`. [file:3][file:6]  
+- Relationship: `Many Employees -> One Department` with `@ManyToOne` / `@OneToMany`, plus `@JsonIgnoreProperties` to avoid infinite JSON loops. [web:49][file:3]  
+
+This means you can safely fetch a department and see its employees, or fetch an employee and see its department, without blowing up the JSON serializer. [web:49][file:5]  
 
 ---
 
-## License
+## API cheat sheet 🔌 [web:49][file:1]
 
-This project can be used as a learning reference or starter template.  
-Update this section with your company or personal license as needed.  
+### Employees [file:1][file:12]
+
+- `GET /api/v1/employees` – list all employees. [file:1][file:11]  
+- `POST /api/v1/employees` – create a new employee. [file:1][file:12]  
+- `GET /api/v1/employees/{id}` – get employee by id. [file:1][file:14]  
+- `PUT /api/v1/employees/{id}` – update employee. [file:1][file:15]  
+- `DELETE /api/v1/employees/{id}` – delete employee. [file:1][file:11]  
+
+Wrapped by `EmployeeService.js` in the frontend so components just call `EmployeeService.getEmployees()` and friends. [web:44][file:12]  
+
+### Departments [file:6][file:9]
+
+- `GET /api/v1/departments` – list all departments. [file:6][file:9]  
+- `POST /api/v1/departments` – create department (rejects duplicate names). [file:6][file:8]  
+- `GET /api/v1/departments/{id}` – get department by id. [file:6][file:3]  
+- `GET /api/v1/departments/search?name={name}` – search by name (case‑insensitive). [file:6][file:9]  
+- `GET /api/v1/departments/{id}/employees/count` – number of employees in that department. [file:6][file:9]  
+
+All of these are consumed by `DepartmentService.js` so the React components stay focused on UI logic. [web:44][file:9]  
+
+---
+
+## Frontend flow 👀 [web:69][file:11]
+
+- `ListEmployeeComponents.jsx` – main table with buttons to add, update, delete, and view employees. [web:69][file:11]  
+- `UpdateEmployeeComponent.jsx` – edit form with department dropdown, supports “no department = bench”. [web:69][file:15]  
+- `ViewEmployeeComponent.jsx` – read‑only details card that shows department name if set, otherwise “On Bench”. [file:14][file:5]  
+- Simple `withRouter` HOCs inject `navigate` / `params` so class components can still use React Router v6 features. [web:19][file:11]  
+
+---
+
+## Next steps / ideas 🚧 [web:45][web:54]
+
+- Add validation messages for required fields and invalid email addresses on both backend and frontend. [web:49][file:1]  
+- Plug in pagination and search on the list page once your dataset grows. [web:45][file:11]  
+- Introduce authentication and role‑based access if you want to simulate a real client project. [web:44][file:7]  
+
+Use this repo as your “playground” to try things before you pitch them in a production codebase. [web:60][file:1]  
