@@ -1,7 +1,7 @@
 // src/services/DepartmentService.js
 import axios from 'axios';
 
-const DEPARTMENT_API_BASE_URL = "http://localhost:8080/api/v1/departments";
+const DEPARTMENT_API_BASE_URL = process.env.REACT_APP_DEPARTMENT_API_BASE_URL;
 
 class DepartmentService {
 
