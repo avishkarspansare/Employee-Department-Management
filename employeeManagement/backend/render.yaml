@@ -1,13 +1,12 @@
 services:
   - type: web
     name: employee-backend
-    runtime: java
-    buildCommand: mvn clean package -DskipTests
-    startCommand: java -jar target/*.jar
+    runtime: docker
+    dockerfilePath: ./Dockerfile
     envVars:
       - key: SPRING_DATASOURCE_URL
-        value: jdbc:mysql://<your-db-host>:3306/<db-name>
+        sync: false
       - key: SPRING_DATASOURCE_USERNAME
-        value: <db-user>
+        sync: false
       - key: SPRING_DATASOURCE_PASSWORD
-        value: Avi123
+        sync: false
