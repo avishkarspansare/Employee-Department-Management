@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: employee-backend
+    runtime: java
+    buildCommand: mvn clean package -DskipTests
+    startCommand: java -jar target/*.jar
+    envVars:
+      - key: SPRING_DATASOURCE_URL
+        value: jdbc:mysql://<your-db-host>:3306/<db-name>
+      - key: SPRING_DATASOURCE_USERNAME
+        value: <db-user>
+      - key: SPRING_DATASOURCE_PASSWORD
+        value: Avi123
