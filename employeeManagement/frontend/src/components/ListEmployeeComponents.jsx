@@ -71,10 +71,10 @@ class ListEmployeeComponents extends Component {
             {" "}
             Add Employee{" "}
           </button>
-          <button className="btn btn-primary ms-1" onClick={this.Department}>
+          {/* <button className="btn btn-primary ms-1" onClick={this.Department}>
             {" "}
             Department{" "}
-          </button>
+          </button> */}
         </div>
         <br></br>
 
